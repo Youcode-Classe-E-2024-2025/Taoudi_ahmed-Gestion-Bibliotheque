@@ -13,11 +13,28 @@
 
 @include('partials.nav')
 
+@if(session('error'))
+<div class=" relative bg-red-200 text-red-700 w-fit p-4 rounded-md m-auto">
+        <button class="absolute top-0 right-0 p-2" onclick="this.parentElement.style.display='none'">
+            &times;
+        </button>
+        {{ session('error') }}
+    </div>
+@endif
+@if(session('success'))
+    <div class=" relative bg-green-200 text-green-700 w-fit p-4 rounded-md m-auto">
+        <button class="absolute top-0 right-0 p-2" onclick="this.parentElement.style.display='none'">
+            &times;
+        </button>
+        {{ session('success') }}
+    </div>
+@endif
+
 <main class="flex-grow justify-start">
   {{ $content }}
 </main>
 
-@include('partials.footer')
+{{-- @include('partials.footer') --}}
 
 </body>
 

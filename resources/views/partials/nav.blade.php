@@ -29,6 +29,9 @@
             <a href="/register" class=" bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-6  border-indigo-700 border-2 rounded-full shadow-md transition duration-300 ease-in-out">register  </a>
             @endguest
             @auth
+            @if (Auth::user()->role === 'admin')
+            <a href="{{ route('admin.index')}}" class=" bg-white text-gray-900 py-1 px-5  transition duration-300 ease-in-out hover:text-indigo-600 ">Dashboard </a>
+            @endif
             <a href="/logout" class=" bg-white text-gray-900 py-1 px-5  rounded-full border-indigo-700 border-2 shadow-md transition duration-300 ease-in-out hover:text-indigo-600 ">Log out <span aria-hidden="true">&rarr;</span></a>
             @endauth
           </div>
@@ -61,6 +64,9 @@
                 <a href="/register" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Register</a>
                 @endguest
                 @auth
+                @if (Auth::user()->role === 'admin')
+                <a href="{{ route('admin.index')}}" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Dashboard </a>
+                @endif
                 <a href="/logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Log out</a>
                 @endauth
               </div>
