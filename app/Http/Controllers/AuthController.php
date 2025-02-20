@@ -13,7 +13,7 @@ class AuthController extends Controller
    //
    public function showLogin()
    {
-      if (auth()->check()) {
+      if (Auth::check()) {
          return redirect('/');
      }
       return view('auth.login');
@@ -21,7 +21,7 @@ class AuthController extends Controller
 
    public function showRegister()
    {
-      if (auth()->check()) {
+      if (Auth::check()) {
          return redirect('/');
      }
       return view('auth.register');
@@ -29,7 +29,7 @@ class AuthController extends Controller
 
    public function login(Request $request)
    {
-      if (auth()->check()) {
+      if (Auth::check()) {
          return redirect('/');
      }
       // Validate the incoming request data
@@ -55,7 +55,7 @@ class AuthController extends Controller
 
    public function register(Request $request)
    {
-      if (auth()->check()) {
+      if (Auth::check()) {
          return redirect('/');
      }
       // Validate the incoming request data
@@ -72,5 +72,11 @@ class AuthController extends Controller
       ]);
 
       return redirect('/');
+   }
+
+   public function logout(Request $request){
+      // Log the user out
+      Auth::logout();
+      return redirect('/login');
    }
 }

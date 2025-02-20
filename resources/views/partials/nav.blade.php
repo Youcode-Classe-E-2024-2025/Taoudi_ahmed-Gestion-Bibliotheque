@@ -24,8 +24,13 @@
             <a href="/books" class="text-sm font-semibold text-gray-900 hover:text-indigo-600 transition-colors">Books</a>
           </div>
             <div class="flex gap-2">
+            @guest
             <a href="/login" class=" bg-white text-gray-900 py-1 px-5  rounded-full border-indigo-700 border-2 shadow-md transition duration-300 ease-in-out hover:text-indigo-600 ">Log in <span aria-hidden="true">&rarr;</span></a>
             <a href="/register" class=" bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-6  border-indigo-700 border-2 rounded-full shadow-md transition duration-300 ease-in-out">register  </a>
+            @endguest
+            @auth
+            <a href="/logout" class=" bg-white text-gray-900 py-1 px-5  rounded-full border-indigo-700 border-2 shadow-md transition duration-300 ease-in-out hover:text-indigo-600 ">Log out <span aria-hidden="true">&rarr;</span></a>
+            @endauth
           </div>
         </div>
       </nav>
@@ -51,8 +56,13 @@
               <div class="space-y-2 py-6">
                 <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Home</a>
                 <a href="/books" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Books</a>
+                @guest
                 <a href="/login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Log in</a>
                 <a href="/register" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Register</a>
+                @endguest
+                @auth
+                <a href="/logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Log out</a>
+                @endauth
               </div>
             </div>
           </div>
