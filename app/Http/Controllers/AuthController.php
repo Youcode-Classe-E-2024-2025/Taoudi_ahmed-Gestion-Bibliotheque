@@ -44,7 +44,7 @@ class AuthController extends Controller
          'password' => $validated['password']
       ], $request->remember)) {
          // Authentication was successful
-         return redirect()->intended('/books');
+         return redirect()->intended('/books')->with('success', 'login successful.');
       }
 
       // If authentication fails, redirect back with an error message
@@ -71,12 +71,12 @@ class AuthController extends Controller
          'password' => Hash::make($validated['password']),
       ]);
 
-      return redirect('/');
+      return redirect('/login')->with('success', 'register successful.');
    }
 
    public function logout(Request $request){
       // Log the user out
       Auth::logout();
-      return redirect('/login');
+      return redirect('/login')->with('success', 'logout successful.');
    }
 }
