@@ -9,15 +9,25 @@
                 <form action="/login" method="post" class="space-y-4">
                     @csrf
                     <div>
-                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Enter your email" class="w-full p-3 border border-indigo-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <label for="email"  class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" name="email" id="email" value="{{ old('email') }}"  placeholder="Enter your email" class="w-full p-3 border border-indigo-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-            
+                    @error('email')
+                      <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                     @enderror
                     <div>
                         <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter your password" class="w-full p-3 border border-indigo-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-            
+                     @error('password')
+                       <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                      @enderror
+
+                    <div class="flex items-center">
+                        <input type="checkbox" name="remember" id="remember" class="form-checkbox">
+                        <label for="remember" class="ml-2 text-gray-700">Remember me</label>
+                    </div>
+                    
                     <div>
                         <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                             Login
