@@ -27,7 +27,8 @@ Route::get('user/books',[UserController::class,'myBookedBooks'])->name('user.ind
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/admin/books', [AdminController::class, 'create'])->name('admin.books');
+    Route::get('/admin/loans', [AdminController::class, 'showBookings'])->name('admin.loans');
+    Route::delete('/admin/booking/destroy/{id}', [AdminController::class, 'destroyBooking'])->name('admin.booking.destroy');
     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/store', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');

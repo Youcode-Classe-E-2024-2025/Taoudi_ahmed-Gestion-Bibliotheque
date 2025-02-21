@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -20,7 +22,7 @@ class AdminController extends Controller
         $books = $query->latest()->paginate(6);
 
         // return view('pages.books', compact('books'));
-        return view('admin.dashboard', compact('books','bookCount'));
+        return view('admin.dashboard', compact('books', 'bookCount'));
     }
 
     // Show form to create a new book
@@ -78,5 +80,31 @@ class AdminController extends Controller
         $book->delete();
 
         return redirect()->route('admin.index')->with('success', 'Book deleted successfully.');
+    }
+
+    public function showBookings()
+    {
+        $bookings = DB::table('bookings')
+            ->join('users', 'bookings.user_id', '=', 'users.id')
+            ->join('books', 'bookings.book_id', '=', 'books.id')
+            ->select(
+                'bookings.id as booking_id',
+                'bookings.borrowed_at',
+                'users.id as user_id',
+                'users.name as user_name',
+                'users.email as user_email',
+                'books.id as book_id',
+                'books.title as book_title',
+                'books.author as book_author'
+            )
+            ->get();
+        return view('admin.loans', compact('bookings'));
+    }
+
+    public function destroyBooking($id){
+
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+        return redirect()->route('admin.loans')->with('success', 'Booking deleted successfully.');
     }
 }
