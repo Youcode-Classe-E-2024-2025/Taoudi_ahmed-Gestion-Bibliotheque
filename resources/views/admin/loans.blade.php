@@ -3,17 +3,6 @@
 
     <x-slot:content>
         <div class="container mx-auto">
-        <!-- Search Bar Section -->
-        <section class="py-8 bg-white">
-            <div class="container mx-auto text-center">
-                <form action="{{ route('admin.index') }}" method="GET" class="flex  justify-center space-x-4">
-                    <input type="text" name="search" class="border w-4/5 md:w-1/  border-gray-300 rounded-lg py-2 px-4" placeholder="Search for books..." value="{{ request()->get('search') }}">
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition duration-300">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </section>
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-semibold text-gray-900">Books Management</h1>
                 <a href='{{route('admin.create')}}' class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center">

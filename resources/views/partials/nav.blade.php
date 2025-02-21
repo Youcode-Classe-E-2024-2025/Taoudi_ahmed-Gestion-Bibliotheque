@@ -67,6 +67,9 @@
                 @if (Auth::user()->role === 'admin')
                 <a href="{{ route('admin.index')}}" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Dashboard </a>
                 @endif
+                @if (Auth::user()->role === 'user')
+                <a href="{{ route('user.index')}}" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">My Books </a>
+                @endif
                 <a href="/logout" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors">Log out</a>
                 @endauth
               </div>

@@ -15,7 +15,11 @@ class Booking extends Model
         'borrowed_at',
         'due_at',
     ];
+    public static function isBooked($id){
 
+        return Booking::where('book_id',$id)->exists();
+        
+    }
     // Relationship to Book
     public function book()
     {

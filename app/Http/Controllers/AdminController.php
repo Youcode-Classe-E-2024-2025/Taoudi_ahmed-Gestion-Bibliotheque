@@ -8,14 +8,19 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     // Show the admin dashboard with stats and list of books
-    public function index()
+    public function index(Request $request)
     {
         $bookCount = Book::count();
-        $mostExpensiveBook = Book::orderBy('price', 'desc')->first();
-        $cheapestBook = Book::orderBy('price', 'asc')->first();
-        $latestBooks = Book::latest()->take(5)->get();
+        $query = Book::query();
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . $request->get('search') . '%')
+                ->orWhere('author', 'like', '%' . $request->get('search') . '%');
+        }
+        // live coding ta3i (1h) darto laravel fi star wahad
+        $books = $query->latest()->paginate(6);
 
-        return view('admin.dashboard', compact('bookCount', 'mostExpensiveBook', 'cheapestBook', 'latestBooks'));
+        // return view('pages.books', compact('books'));
+        return view('admin.dashboard', compact('books','bookCount'));
     }
 
     // Show form to create a new book
