@@ -32,6 +32,9 @@
             @if (Auth::user()->role === 'admin')
             <a href="{{ route('admin.index')}}" class=" bg-white text-gray-900 py-1 px-5  transition duration-300 ease-in-out hover:text-indigo-600 ">Dashboard </a>
             @endif
+            @if (Auth::user()->role === 'user')
+                <a href="{{ route('user.index')}}" class=" bg-white text-gray-900 py-1 px-5  transition duration-300 ease-in-out hover:text-indigo-600 ">My Books </a>
+             @endif
             <a href="/logout" class=" bg-white text-gray-900 py-1 px-5  rounded-full border-indigo-700 border-2 shadow-md transition duration-300 ease-in-out hover:text-indigo-600 ">Log out <span aria-hidden="true">&rarr;</span></a>
             @endauth
           </div>

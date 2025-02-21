@@ -11,4 +11,8 @@ class Book extends Model
 
     protected $fillable =['title','price','author','description','published_date','genre'];
    
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
